@@ -34,11 +34,11 @@ router.get("/users/:id", (req,res) => {
         // equivalente a un forEach
         user => {
             if(!user.exists){
-                throw new Error ("User not found :(");
+                res.status(404).json({message: "User not found :("});
             }
             res.status(200).json(user.data());
         }
-    ).catch(error => return res.status(404).send(error));
+    ).catch(error => res.status(500).send(error));
 });
 
 //POST 
